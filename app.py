@@ -2,6 +2,7 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
+from langchain_community.vectorstores import FAISS
 from langchain_chroma import Chroma
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -14,9 +15,9 @@ from langchain_core.prompts import MessagesPlaceholder
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# __import__('pysqlite3')
+# import sys
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 st.cache_resource(show_spinner=False)
 def load_model():
@@ -59,8 +60,9 @@ def get_text_chunks(text):
 
 def get_vector_store(text_chunks):
     global embeddings
-    vector_store = Chroma.from_texts(text_chunks, embedding = embeddings , persist_directory="chroma_db")
-    
+    # vector_store = Chroma.from_texts(text_chunks, embedding = embeddings , persist_directory="chroma_db")
+    vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
+    vector_store.save_local("faiss_index")
 
 st.cache_resource(show_spinner=False)
 def get_conversational_chain():
@@ -97,7 +99,8 @@ Helpful Answer:
     )
     
     # prompt  = hub.pull("langchain-ai/retrieval-qa-chat")
-    new_db = Chroma(persist_directory="chroma_db",embedding_function=embeddings)
+    # new_db = Chroma(persist_directory="chroma_db",embedding_function=embeddings)
+    new_db = FAISS.load_local("faiss_index", embeddings)
     new_db = new_db.as_retriever(k=6)
     
     history_aware_retriever = create_history_aware_retriever(
