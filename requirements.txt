@@ -5,7 +5,7 @@ pysqlite3-binary
 langchain
 PyPDF2
 langchain-community
-chromadb --user
+chromadb
 faiss-cpu
 langchain_google_genai
 sentence_transformers
