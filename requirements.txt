@@ -10,3 +10,4 @@ langchain_google_genai
 sentence_transformers
 gunicorn
 langchain_text_splitters
+langchain_chroma
