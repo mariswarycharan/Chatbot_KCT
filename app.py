@@ -100,7 +100,7 @@ Helpful Answer:
     
     # prompt  = hub.pull("langchain-ai/retrieval-qa-chat")
     # new_db = Chroma(persist_directory="chroma_db",embedding_function=embeddings)
-    new_db = FAISS.load_local("faiss_index", embeddings)
+    new_db = FAISS.load_local("faiss_index", embeddings , allow_dangerous_deserialization=True)
     new_db = new_db.as_retriever(k=6)
     
     history_aware_retriever = create_history_aware_retriever(
