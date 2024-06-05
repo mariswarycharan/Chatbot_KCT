@@ -3,7 +3,7 @@ from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
 from langchain_community.vectorstores import FAISS
-from langchain_chroma import Chroma
+# from langchain_chroma import Chroma
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import google.generativeai as genai
