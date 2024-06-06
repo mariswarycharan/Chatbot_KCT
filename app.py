@@ -19,6 +19,9 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 # import sys
 # sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+st.header("AI Chatbot")
+
+
 st.cache_resource(show_spinner=False)
 def load_model():
     load_dotenv()
