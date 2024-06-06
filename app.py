@@ -168,7 +168,7 @@ def main():
             response = user_input(prompt)
             end_time = time.time()
             print(end_time - start_time)
-            st.markdown(response)
+            st.chat_message("ai").markdown(response)
             # st.subheader("References : ")
             
             # for doc in source_docs:
