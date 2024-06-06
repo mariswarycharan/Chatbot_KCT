@@ -176,15 +176,15 @@ def main():
             
         st.session_state.messages_document.append({"role": "assistant", "content": response})
         
-    with st.sidebar:
-        st.title("Menu:")
-        pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
+    # with st.sidebar:
+    #     st.title("Menu:")
+    #     pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
         
         # website_url = st.text_input('Enter the website url : ')
         
         
-        if st.button("Submit & Process"):
-            with st.spinner("Processing..."):
+        # if st.button("Submit & Process"):
+        #     with st.spinner("Processing..."):
                 
 
                 # if website_url != '':
@@ -193,10 +193,10 @@ def main():
                 #     get_vector_store(text_chunks)
                 #     st.success("Done")
                 
-                raw_text = get_pdf_text(pdf_docs)
-                text_chunks = get_text_chunks(raw_text)
-                get_vector_store(text_chunks)
-                st.success("Done")
+                # raw_text = get_pdf_text(pdf_docs)
+                # text_chunks = get_text_chunks(raw_text)
+                # get_vector_store(text_chunks)
+                # st.success("Done")
 
 if __name__ == "__main__":
     main()
